@@ -14,4 +14,6 @@ public interface BoardRepository {
     Board save(Board board);
 
     boolean deleteById(Long id);
+
+    void incrementViewCount(Long id);
 }

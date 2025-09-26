@@ -65,7 +65,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     @Override
     public int count() {
         String sql = "SELECT COUNT(*) FROM boards";
-        ;
+
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
@@ -144,5 +144,11 @@ public class BoardRepositoryImpl implements BoardRepository {
         int result = jdbcTemplate.update(sql, id);
 
         return result > 0;
+    }
+
+    @Override
+    public void incrementViewCount(Long id) {
+        String sql = "UPDATE boards SET view_count = view_count + 1 WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 }

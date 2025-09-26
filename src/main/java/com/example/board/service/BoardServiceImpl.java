@@ -32,6 +32,10 @@ public class BoardServiceImpl implements BoardService {
 
         Board board = boardRepository.findById(id);
 
+        // 조회 수 증가
+
+        boardRepository.incrementViewCount(id);
+        board.setViewCount(board.getViewCount() + 1);
 
         return new BoardDto.DetailResponse(
                 board.getId(),
